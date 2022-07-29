@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Freckle+Face&family=Luckiest+Guy&family=Orbitron&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(./image/360_F_323880864_TPsH5ropjEBo1ViILJmcFHJqsBzorxUB.jpg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+}
+
+td {
+    background-color: white;
+    width: 7rem;
+    height: 7rem;
+    border: 2px solid;
+    text-align: center;
+}
+
+h1{
+    color: white;
+    text-align: center;
+}
+
+.player{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.playername{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 900;
+    font-size: 25px;
+    margin: 30px 0 30px 0;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    align-items: center;
+    border-radius: 7px;
+}
+
+button{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: orangered;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: red;
+}
+
+.gameBtn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox{
+    display: none;
+}
+
+.box{
+    color: white;
+    width: 7rem;
+    height: 7rem;
+    font-size: 100px;
+    cursor: pointer;
+    font-family: 'Finger Paint', cursive;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    background-color: rgba(0, 0, 0, .9);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.blanket {
+    background: transparent;
+    width: 29%;
+    height: 24rem;
+    position: absolute;
+    z-index: 50;
+    border-radius: 12px;
+    display: none;
+}
+
+.close{
+    font-size: 20px;
+}
+
+.inputModal{
+    position: absolute;
+    top: 270px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    height: 200px;
+    justify-content: space-evenly;
+    display: none;
+}
+
+.resultModal{
+    position: absolute;
+    top: 270px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    height: 150px;
+    justify-content: space-evenly;
+    font-weight: 900;
+    font-size: 30px;
+    display: none;
+}
+
+.players{
+    text-align: center;
+}
+
+.emoji1{
+    display: none;
+}
+.emoji2{
+    display: none;
+}
+
+.whichPlayer{
+    position: absolute;
+    top: 270px;
+    left: 50px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, .7);
+    height: 100px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.close {
+    border: .2px solid;
+    border-radius: 5px;
+    padding: 1px 9px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.input2Btn{
+    display: none;
+}
+
+.input2{
+    display: none;
+}
+
+.close:hover{
+    background-color: black;
+    color: white;
+}
+
+.inputModal button {
+    width: 50%;
+}
+
+input{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: auto orangered;
+    width: 100%;
+    font-size: 15px;
+}
+
+.box:nth-child(1) {
+    border-right: 4px solid white;
+    border-bottom:  4px solid white;
+}
+.box:nth-child(2) {
+    border-right: 4px solid white;
+    border-bottom:  4px solid white;
+}
+.box:nth-child(3) {
+    border-bottom:  4px solid white;
+}
+.box:nth-child(4) {
+    border-right: 4px solid white;
+    border-bottom:  4px solid white;
+}
+.box:nth-child(5) {
+    border-right: 4px solid white;
+    border-bottom:  4px solid white;
+}
+.box:nth-child(6) {
+    border-bottom:  4px solid white;
+}
+.box:nth-child(7) {
+    border-right: 4px solid white;
+}
+.box:nth-child(8) {
+    border-right: 4px solid white;
+}
+.box:nth-child(9) {
+}

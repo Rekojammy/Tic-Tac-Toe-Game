@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic-Tac-Toe Game</title>
+</head>
+
+<body>
+
+    <main class="flex flex-col items-center">
+        <h1>Tic Tac Toe Game</h1>
+
+        <div class="player">
+            <button id="playerBtn">Edit Player Name</button>
+            <div class="playername">
+                <div class="players">
+                    <p class="p1" id="p1">Player 1</p>
+                    <p><span id="p1Score">0</span> Wins</p>
+                </div>
+                <div class="players">
+                    <p>VS</p>
+                    <p><span id="drwScore">0</span> Draws</p>
+                </div>
+                <div class="players">
+                    <p class="p2" id="p2">Player 2</p>
+                    <p><span id="p2Score">0</span> Wins</p>
+                </div>
+            </div>
+        </div>
+
+        <input class="checkbox" type="checkbox" id="check">
+        <input class="checkbox" type="checkbox" id="endcheck">
+        <div class="whichPlayer">
+            <p>Player 1's Turn...</p>
+        </div>
+
+        <div class="blanket"></div>
+        
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+
+        <div class="inputModal" id="inputModal">
+            <div class="close">x</div>
+            <input type="text" class="input1" id="input1" value="Player 1" onclick="this.select()">
+            <button class="input1Btn">OK</button>
+            <input type="text" class="input2" id="input2" value="Player 2" onclick="this.select()">
+            <button class="input2Btn">OK</button>
+        </div>
+
+        <div class="resultModal" id="resultModal">
+            <div class="close" id="resultClose">x</div>
+            <p id="result">Rejoice Wins</p>
+            <p class="emoji1">&#128516; &#128079; &#128165; &#127881;</p>
+            <p class="emoji2">⛔ 🤗</p>
+        </div>
+
+        <div class="gameBtn">
+            <button class="" id="start">Start Game</button>
+            <button class="" id="restart">Restart</button>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
