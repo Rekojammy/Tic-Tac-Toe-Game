@@ -77,6 +77,7 @@ for (let i = 0; i < box.length; i++) {
         count++
         while (count < 12) {
             if (element.textContent != '') {
+                console.log('it is')
                 return
             } else {
                 console.log(count)
@@ -107,7 +108,7 @@ for (let i = 0; i < box.length; i++) {
                         result.textContent = p2.textContent + ' ' + 'WINS!'
                         emoji1.style.display = 'block';
                         p2Score.textContent++
-                    }, 500)
+                    }, 10)
                 } else {
                     blanket.style.display = 'block';
                     setTimeout(() => {
@@ -116,7 +117,7 @@ for (let i = 0; i < box.length; i++) {
                         result.textContent = p1.textContent + ' ' + 'WINS!'
                         emoji1.style.display = 'block';
                         p1Score.textContent++
-                    }, 500)
+                    }, 10)
                 }
             }, 500)
         } else if (count == 9) {
@@ -132,6 +133,7 @@ for (let i = 0; i < box.length; i++) {
         }
     }
     element.addEventListener('click', gameLogic);
+    
 
     arr1[0] = box[0]
     arr1[1] = box[1]
@@ -144,31 +146,32 @@ for (let i = 0; i < box.length; i++) {
     arr3[0] = box[6]
     arr3[1] = box[7]
     arr3[2] = box[8]
+
+    start.addEventListener('click', () => {
+        blanket.style.display = 'none';
+            element.textContent = '';
+            p1Score.textContent = 0;
+            p2Score.textContent = 0;
+            drwScore.textContent = 0;
+            check.checked = true;
+            count = 0
+            setTimeout(() => {
+                element.addEventListener('click', gameLogic);
+            },100)
+    });
+    
+    restart.addEventListener('click', () => {
+        blanket.style.display = 'none';
+            element.textContent = '';
+            check.checked = true
+            count = 0
+            setTimeout(() => {
+                element.addEventListener('click', gameLogic);
+            },100)
+    });
 }
 
-start.addEventListener('click', () => {
-    blanket.style.display = 'none';
-    for (let i = 0; i < box.length; i++) {
-        const element = box[i];
 
-        element.textContent = '';
-        p1Score.textContent = 0;
-        p2Score.textContent = 0;
-        drwScore.textContent = 0;
-        check.checked = true;
-        count = 0
-    }
-});
-
-restart.addEventListener('click', () => {
-    blanket.style.display = 'none';
-    for (let i = 0; i < box.length; i++) {
-        const element = box[i];
-        element.textContent = '';
-        check.checked = true
-        count = 0
-    }
-});
 
 
 
