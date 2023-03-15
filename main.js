@@ -2,6 +2,12 @@ function _(query) {
     return document.querySelector(query)
 }
 
+const twoplayers = _('#twoplayers');
+const computer = _('#computer');
+const gameBtn1 = _('.gameBtn1');
+const gamePlayPanel = _('.gamePlayPanel');
+const main = _('.main1');
+
 const playerBtn = _('#playerBtn');
 const inputModal = _('#inputModal');
 const input1 = _('#input1');
@@ -36,9 +42,22 @@ let p1Score = _('#p1Score')
 let p2Score = _('#p2Score') 
 let drwScore = _('#drwScore') 
 
+
+
 // Set the scores to localStorage
 let exist = JSON.parse(localStorage.getItem('results'))
 
+gameBtn1.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target.id == 'twoplayers') {
+        gamePlayPanel.style.display = 'none';
+        main.style.display = 'block';
+    }
+
+    if (target.id == 'computer') {
+        window.location.href = './with_computer.html';
+    }
+})
 
 const addScore = (player1_score, draw_score, player2_score) => {
     let resultStore = {
@@ -59,12 +78,10 @@ if (!exist) {
     p1Score.innerText = 0
     drwScore.innerText = 0
     p2Score.innerText = 0
-    console.log('no result');
 } else {
         p1Score.innerText = playStore.player1;
         drwScore.innerText = playStore.draws;
         p2Score.innerText = playStore.player2;
-        console.log('result dey');
 }
 
 
@@ -115,17 +132,13 @@ for (let i = 0; i < box.length; i++) {
         count++
         while (count < 12) {
             if (element.textContent != '') {
-                console.log('it is')
                 return
             } else {
-                console.log(count)
                 if (count % 2 == 0) {
-                    console.log('odd')
                     check.checked = true
                     whichPlayer.firstElementChild.textContent = p1.textContent + "'s Turn...";
                     element.textContent = oText;
                 } else {
-                    console.log('even')
                     check.checked = false
                     whichPlayer.firstElementChild.textContent = p2.textContent + "'s Turn...";
                     element.textContent = xText;
@@ -137,7 +150,6 @@ for (let i = 0; i < box.length; i++) {
         if (arrAreEqual(arr1) == true || arrAreEqual(arr2) == true || arrAreEqual(arr3) == true
             || col1AreEqual() == true || col2AreEqual() == true || col3AreEqual() == true
             || fslashAreEqual() == true || bslashAreEqual() == true) {
-            console.log('Game Ended')
             setTimeout(() => {
                 if (check.checked == true) {
                     container.style.pointerEvents = 'none';
@@ -178,7 +190,6 @@ for (let i = 0; i < box.length; i++) {
         } else if (count == 9) {
             container.style.pointerEvents = 'none';
             element.removeEventListener('click', gameLogic);
-            console.log('Game Ended')
             setTimeout(() => {
                 resultModal.style.display = 'flex';
                 result.textContent = "IT'S A TIE!"
@@ -212,6 +223,7 @@ for (let i = 0; i < box.length; i++) {
     arr3[2] = box[8]
 
     start.addEventListener('click', () => {
+        if(isGameEnded) {
         container.style.pointerEvents = 'all';
             element.textContent = '';
             p1Score.textContent = 0;
@@ -223,6 +235,7 @@ for (let i = 0; i < box.length; i++) {
                 element.addEventListener('click', gameLogic);
             },100)
             localStorage.clear();
+        }
     });
     
     restart.addEventListener('click', () => {
@@ -321,9 +334,3 @@ function bslashAreEqual() {
         }
     }
 }
-
-
-
-console.log(whichPlayer.firstElementChild.textContent)
-
-

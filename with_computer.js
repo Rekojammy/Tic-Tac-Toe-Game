@@ -2,17 +2,21 @@ function _(query) {
     return document.querySelector(query)
 }
 
+const easy = _('#easy');
+const hard = _('#hard');
+const gameBtn2 = _('.gameBtn2');
+const gamePlayPanel = _('.gamePlayPanel');
+const main = _('.main2');
+
 const playerBtn = _('#playerBtn');
 const inputModal = _('#inputModal');
+const buffer = _('#buffer');
 const input1 = _('#input1');
 const check = _('#check');
 const resultModal = _('#resultModal');
 const result = _('#result');
 const restart = _('#restart');
 const start = _('#start');
-const p1Score = _('#p1Score');
-const p2Score = _('#p2Score');
-const drwScore = _('#drwScore');
 const container = _('.container');
 const resultClose = _('#resultClose');
 const p1 = _('.p1');
@@ -33,7 +37,56 @@ let arr1 = []
 let arr2 = []
 let arr3 = []
 
+
+let p1Score = _('#p1Score')
+let p2Score = _('#p2Score') 
+let drwScore = _('#drwScore') 
+
+
+
+// Set the scores to localStorage
+let exist = JSON.parse(localStorage.getItem('results2'))
+
 turn.textContent = 'Your';
+
+gameBtn2.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target.id == 'easy') {
+        gamePlayPanel.style.display = 'none';
+        main.style.display = 'block';
+    }
+
+    if (target.id == 'hard') {
+        alert('The Hard version is still in progress and unavailable for now. Please try the Easy version!')
+    }
+})
+
+const addScore = (player1_score, draw_score, player2_score) => {
+    let resultStore = {
+        player1: player1_score,
+        draws: draw_score,
+        player2: player2_score
+    }
+
+    localStorage.setItem("results2", JSON.stringify(resultStore))
+
+    return { player1_score, draw_score, player2_score }
+}
+
+let playStore = JSON.parse(localStorage.getItem('results2')) || []
+
+
+if (!exist) {
+    p1Score.innerText = 0
+    drwScore.innerText = 0
+    p2Score.innerText = 0
+} else {
+        p1Score.innerText = playStore.player1;
+        drwScore.innerText = playStore.draws;
+        p2Score.innerText = playStore.player2;
+}
+
+
 
 playerBtn.addEventListener('click', () => {
     container.style.pointerEvents = 'none';
@@ -68,6 +121,7 @@ let randbox = 9
 
 function computerTurn() {
     if (isGameEnded) {
+        buffer.style.display = 'none'
         return
     } else {
         count++
@@ -78,16 +132,14 @@ function computerTurn() {
                 elem.push(el)
         })
         setTimeout(() => {
-            console.log('odd')
             check.checked = true
-            console.log(elem)
-            console.log(elem[random].innerHTML = oText);
             randbox--;
             container.style.pointerEvents = 'all';
             whichPlayer.firstElementChild.textContent = "Your Turn";
         }, 2000);
         setTimeout(() => {
             gameLogics();
+            buffer.style.display = 'none'
         }, 2500);
     }
 }
@@ -98,11 +150,8 @@ for (let i = 0; i < box.length; i++) {
         count++
         while (count < 12) {
             if (element.textContent != '') {
-                console.log('it is')
                 return
             } else {
-                console.log(count)
-                console.log('even')
                 check.checked = false
                 whichPlayer.firstElementChild.textContent = p2.textContent + "'s Turn";
                 element.textContent = xText;
@@ -113,6 +162,7 @@ for (let i = 0; i < box.length; i++) {
         }
         gameLogics();
         setTimeout(() => {
+            buffer.style.display = 'flex'
             computerTurn()
         }, 500);
     }
@@ -132,6 +182,7 @@ for (let i = 0; i < box.length; i++) {
     arr3[2] = box[8]
 
     start.addEventListener('click', () => {
+        if(isGameEnded) {
         container.style.pointerEvents = 'all';
         element.textContent = '';
         p1Score.textContent = 0;
@@ -141,15 +192,19 @@ for (let i = 0; i < box.length; i++) {
         count = 0
         isGameEnded = false
         randbox = 9
+        localStorage.clear();
+        }
     });
 
     restart.addEventListener('click', () => {
+        if(isGameEnded) {
         container.style.pointerEvents = 'all';
         element.textContent = '';
         check.checked = true
         count = 0
         isGameEnded = false
         randbox = 9
+        }
     });
 }
 
@@ -160,7 +215,6 @@ function gameLogics() {
     if (arrAreEqual(arr1) == true || arrAreEqual(arr2) == true || arrAreEqual(arr3) == true
         || col1AreEqual() == true || col2AreEqual() == true || col3AreEqual() == true
         || fslashAreEqual() == true || bslashAreEqual() == true) {
-        console.log('Game Ended')
         isGameEnded = true
         setTimeout(() => {
             if (check.checked == true) {
@@ -170,6 +224,13 @@ function gameLogics() {
                     result.textContent = p2.textContent + ' ' + 'WINS!'
                     emoji1.style.display = 'block';
                     p2Score.textContent++
+
+                    // Store the results at the end of the game
+                    addScore(
+                        p1Score.innerText,
+                        drwScore.innerText,
+                        p2Score.innerText
+                    )
                 }, 10)
             } else {
                 container.style.pointerEvents = 'none';
@@ -182,12 +243,18 @@ function gameLogics() {
                     emoji1.style.display = 'block';
                     emoji2.style.display = 'none';
                     p1Score.textContent++
+
+                    // Store the results at the end of the game
+                    addScore(
+                        p1Score.innerText,
+                        drwScore.innerText,
+                        p2Score.innerText
+                    )
                 }, 10)
             }
         }, 500)
     } else if (count == 9) {
         container.style.pointerEvents = 'none';
-        console.log('Game Ended')
         isGameEnded = true
         setTimeout(() => {
             resultModal.style.display = 'flex';
@@ -195,6 +262,13 @@ function gameLogics() {
             emoji2.style.display = 'block';
             emoji1.style.display = 'none';
             drwScore.textContent++
+
+            // Store the results at the end of the game
+            addScore(
+                p1Score.innerText,
+                drwScore.innerText,
+                p2Score.innerText
+            )
         }, 500)
     }
     return isGameEnded
@@ -279,6 +353,5 @@ function bslashAreEqual() {
         }
     }
 }
-console.log(whichPlayer.firstElementChild.textContent)
 
 
