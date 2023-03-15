@@ -18,15 +18,15 @@
             <button id="playerBtn">Edit Player Name</button>
             <div class="playername">
                 <div class="players">
-                    <p class="p1" id="p1">Player 1</p>
+                    <p class="p1" id="p1">You</p>
                     <p><span id="p1Score">0</span> Wins</p>
                 </div>
-                <div class="players">
+                <div class="playersMid">
                     <p>VS</p>
                     <p><span id="drwScore">0</span> Draws</p>
                 </div>
                 <div class="players">
-                    <p class="p2" id="p2">Player 2</p>
+                    <p class="p2" id="p2">Computer</p>
                     <p><span id="p2Score">0</span> Wins</p>
                 </div>
             </div>
@@ -51,8 +51,6 @@
             <div class="close">x</div>
             <input type="text" class="input1" id="input1" value="Player 1" onclick="this.select()">
             <button class="input1Btn">OK</button>
-            <input type="text" class="input2" id="input2" value="Player 2" onclick="this.select()">
-            <button class="input2Btn">OK</button>
         </div>
 
         <div class="resultModal" id="resultModal">
@@ -65,13 +63,13 @@
         <div class="gameBtn">
             <button class="" id="start">Start Game</button>
             <div class="whichPlayer">
-                <p>Player 1's Turn...</p>
+                <p class="next"><span class="turn">Player's</span> Turn</p>
             </div>
             <button class="" id="restart">Restart</button>
         </div>
     </main>
 
-    <script src="main.js"></script>
+    <script src="with_computer.js"></script>
 </body>
 
 </html>

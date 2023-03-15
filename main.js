@@ -11,11 +11,7 @@ const resultModal = _('#resultModal');
 const result = _('#result');
 const restart = _('#restart');
 const start = _('#start');
-const p1Score = _('#p1Score');
-const p2Score = _('#p2Score');
-const drwScore = _('#drwScore');
 const container = _('.container');
-const blanket = _('.blanket');
 const resultClose = _('#resultClose');
 const p1 = _('.p1');
 const p2 = _('.p2');
@@ -26,6 +22,7 @@ const input2Btn = _('.input2Btn');
 const whichPlayer = _('.whichPlayer');
 const box = document.querySelectorAll('.box');
 
+
 let xText = "X";
 let oText = "O";
 
@@ -33,7 +30,47 @@ let arr1 = []
 let arr2 = []
 let arr3 = []
 
-playerBtn.addEventListener('click', () => {
+let isGameEnded = false;
+
+let p1Score = _('#p1Score')
+let p2Score = _('#p2Score') 
+let drwScore = _('#drwScore') 
+
+// Set the scores to localStorage
+let exist = JSON.parse(localStorage.getItem('results'))
+
+
+const addScore = (player1_score, draw_score, player2_score) => {
+    let resultStore = {
+        player1: player1_score,
+        draws: draw_score,
+        player2: player2_score
+    }
+
+    localStorage.setItem("results", JSON.stringify(resultStore))
+
+    return { player1_score, draw_score, player2_score }
+}
+
+let playStore = JSON.parse(localStorage.getItem('results')) || []
+
+
+if (!exist) {
+    p1Score.innerText = 0
+    drwScore.innerText = 0
+    p2Score.innerText = 0
+    console.log('no result');
+} else {
+        p1Score.innerText = playStore.player1;
+        drwScore.innerText = playStore.draws;
+        p2Score.innerText = playStore.player2;
+        console.log('result dey');
+}
+
+
+
+playerBtn.addEventListener('click', () => { 
+    container.style.pointerEvents = 'none';
     inputModal.style.display = 'flex';
     input1.style.display = 'block';
     input1Btn.style.display = 'block';
@@ -49,7 +86,7 @@ inputModal.addEventListener('click', (e) => {
     let target = e.target
     if (target.classList.contains('close')) {
         inputModal.style.display = 'none';
-
+        container.style.pointerEvents = 'all';
     }
     if (target.classList.contains('input1Btn')) {
         p1.textContent = input1.value
@@ -65,6 +102,7 @@ inputModal.addEventListener('click', (e) => {
         setTimeout(() => {
             inputModal.style.display = 'none';
         }, 500)
+        container.style.pointerEvents = 'all';
     }
 })
 
@@ -102,33 +140,59 @@ for (let i = 0; i < box.length; i++) {
             console.log('Game Ended')
             setTimeout(() => {
                 if (check.checked == true) {
-                    blanket.style.display = 'block';
+                    container.style.pointerEvents = 'none';
                     setTimeout(() => {
                         resultModal.style.display = 'flex';
                         result.textContent = p2.textContent + ' ' + 'WINS!'
                         emoji1.style.display = 'block';
                         p2Score.textContent++
+                        isGameEnded = true;
+
+                        // Store the results at the end of the game
+                        addScore(
+                            p1Score.innerText,
+                            drwScore.innerText,
+                            p2Score.innerText
+                        )
                     }, 10)
                 } else {
-                    blanket.style.display = 'block';
+                    container.style.pointerEvents = 'none';
                     setTimeout(() => {
                         element.removeEventListener('click', gameLogic);
                         resultModal.style.display = 'flex';
                         result.textContent = p1.textContent + ' ' + 'WINS!'
                         emoji1.style.display = 'block';
+                        emoji2.style.display = 'none';
                         p1Score.textContent++
+                        isGameEnded = true;
+
+                        // Store the results at the end of the game
+                        addScore(
+                            p1Score.innerText,
+                            drwScore.innerText,
+                            p2Score.innerText
+                        )
                     }, 10)
                 }
             }, 500)
         } else if (count == 9) {
-            blanket.style.display = 'block';
+            container.style.pointerEvents = 'none';
             element.removeEventListener('click', gameLogic);
             console.log('Game Ended')
             setTimeout(() => {
                 resultModal.style.display = 'flex';
                 result.textContent = "IT'S A TIE!"
                 emoji2.style.display = 'block';
+                emoji1.style.display = 'none';
                 drwScore.textContent++
+                isGameEnded = true;
+
+                // Store the results at the end of the game
+                addScore(
+                    p1Score.innerText,
+                    drwScore.innerText,
+                    p2Score.innerText
+                )
             }, 500)
         }
     }
@@ -148,7 +212,7 @@ for (let i = 0; i < box.length; i++) {
     arr3[2] = box[8]
 
     start.addEventListener('click', () => {
-        blanket.style.display = 'none';
+        container.style.pointerEvents = 'all';
             element.textContent = '';
             p1Score.textContent = 0;
             p2Score.textContent = 0;
@@ -158,16 +222,19 @@ for (let i = 0; i < box.length; i++) {
             setTimeout(() => {
                 element.addEventListener('click', gameLogic);
             },100)
+            localStorage.clear();
     });
     
     restart.addEventListener('click', () => {
-        blanket.style.display = 'none';
+        if(isGameEnded) {
+        container.style.pointerEvents = 'all';
             element.textContent = '';
             check.checked = true
             count = 0
             setTimeout(() => {
                 element.addEventListener('click', gameLogic);
             },100)
+        }
     });
 }
 
@@ -258,6 +325,5 @@ function bslashAreEqual() {
 
 
 console.log(whichPlayer.firstElementChild.textContent)
-
 
 
