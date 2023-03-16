@@ -311,6 +311,16 @@ input{
         width: 50%;
         margin-top: 100px;
     }
+
+    .back {
+        width: 35px;
+        height: 35px;
+        top: 20px;
+    }
+
+    .back img {
+        width: 1rem;
+    }
 }
 
 @media screen and (min-width: 768px) {

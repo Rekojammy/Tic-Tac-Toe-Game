@@ -121,7 +121,7 @@ let randbox = 9
 
 function computerTurn() {
     if (isGameEnded) {
-        buffer.style.display = 'none'
+        buffer.style.display = 'none';
         return
     } else {
         count++
@@ -135,6 +135,7 @@ function computerTurn() {
             check.checked = true
             randbox--;
             container.style.pointerEvents = 'all';
+            elem[random].innerHTML = oText;
             whichPlayer.firstElementChild.textContent = "Your Turn";
         }, 2000);
         setTimeout(() => {
