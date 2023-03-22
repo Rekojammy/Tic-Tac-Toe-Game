@@ -28,6 +28,15 @@ const input2Btn = _('.input2Btn');
 const whichPlayer = _('.whichPlayer');
 const box = document.querySelectorAll('.box');
 
+const hori1 = _('.hori1');
+const hori2 = _('.hori2');
+const hori3 = _('.hori3');
+const verti1 = _('.verti1');
+const verti2 = _('.verti2');
+const verti3 = _('.verti3');
+const diagonstroke = _('.diagonstroke');
+const slashstroke = _('.slashstroke');
+const slashHold = _('.slashHold');
 
 let xText = "X";
 let oText = "O";
@@ -37,6 +46,7 @@ let arr2 = []
 let arr3 = []
 
 let isGameEnded = false;
+let gameStarted = false;
 
 let p1Score = _('#p1Score')
 let p2Score = _('#p2Score') 
@@ -129,6 +139,8 @@ let count = 0
 for (let i = 0; i < box.length; i++) {
     const element = box[i];
     const gameLogic = (e) => {
+        if (!gameStarted)
+            gameStarted = true;
         count++
         while (count < 12) {
             if (element.textContent != '') {
@@ -147,9 +159,27 @@ for (let i = 0; i < box.length; i++) {
             break;
         }
 
+        
+        if (arrAreEqual(arr1))
+            hori1.style.display = 'block';
+        if (arrAreEqual(arr2))
+            hori2.style.display = 'block';
+        if (arrAreEqual(arr3))
+            hori3.style.display = 'block';
+        if (col1AreEqual(arr1))
+            verti1.style.display = 'block';
+        if (col2AreEqual(arr1))
+            verti2.style.display = 'block';
+        if (col3AreEqual(arr1))
+            verti3.style.display = 'block';
+        if (fslashAreEqual(arr1))
+            slashstroke.style.display = 'block';
+        if (bslashAreEqual(arr1))
+            diagonstroke.style.display = 'block';
         if (arrAreEqual(arr1) == true || arrAreEqual(arr2) == true || arrAreEqual(arr3) == true
             || col1AreEqual() == true || col2AreEqual() == true || col3AreEqual() == true
             || fslashAreEqual() == true || bslashAreEqual() == true) {
+                gameStarted = false;
             setTimeout(() => {
                 if (check.checked == true) {
                     container.style.pointerEvents = 'none';
@@ -223,7 +253,7 @@ for (let i = 0; i < box.length; i++) {
     arr3[2] = box[8]
 
     start.addEventListener('click', () => {
-        if(isGameEnded) {
+        if(isGameEnded || !gameStarted) {
         container.style.pointerEvents = 'all';
             element.textContent = '';
             p1Score.textContent = 0;
@@ -234,7 +264,11 @@ for (let i = 0; i < box.length; i++) {
             setTimeout(() => {
                 element.addEventListener('click', gameLogic);
             },100)
-            localStorage.clear();
+            
+            for (const children of slashHold.children) {
+                children.style.display = 'none';
+            }
+            localStorage.results = JSON.stringify({ player1: "0", draws: "0", player2: "0" })
         }
     });
     
@@ -247,6 +281,10 @@ for (let i = 0; i < box.length; i++) {
             setTimeout(() => {
                 element.addEventListener('click', gameLogic);
             },100)
+            
+            for (const children of slashHold.children) {
+                children.style.display = 'none';
+            }
         }
     });
 }

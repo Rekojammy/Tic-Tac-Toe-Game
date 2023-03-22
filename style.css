@@ -31,20 +31,20 @@ td {
     text-align: center;
 }
 
-h1{
+h1 {
     color: white;
     text-align: center;
 
 }
 
-.player{
+.player {
     color: white;
     display: flex;
     flex-direction: column;
     margin-top: 50px;
 }
 
-.playername{
+.playername {
     display: flex;
     justify-content: space-between;
     font-weight: 900;
@@ -61,7 +61,7 @@ h1{
     margin: 0 20px 0 20px;
 }
 
-button{
+button {
     border: none;
     padding: 10px;
     border-radius: 10px;
@@ -70,7 +70,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: red;
 }
 
@@ -80,11 +80,11 @@ button:hover{
     margin-top: 20px;
 }
 
-.checkbox{
+.checkbox {
     display: none;
 }
 
-.box{
+.box {
     color: white;
     width: 7rem;
     height: 7rem;
@@ -93,7 +93,7 @@ button:hover{
     font-family: 'Finger Paint', cursive;
 }
 
-.container{
+.container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
@@ -102,11 +102,11 @@ button:hover{
     padding: 20px;
 }
 
-.close{
+.close {
     font-size: 20px;
 }
 
-.inputModal{
+.inputModal {
     position: absolute;
     top: 270px;
     width: 30%;
@@ -123,7 +123,7 @@ button:hover{
     display: none;
 }
 
-.resultModal{
+.resultModal {
     position: absolute;
     top: 270px;
     width: 30%;
@@ -142,26 +142,27 @@ button:hover{
     display: none;
 }
 
-.players{
+.players {
     text-align: center;
 }
 
-.emoji1{
+.emoji1 {
     display: none;
 }
-.emoji2{
+
+.emoji2 {
     display: none;
 }
 
 .whichPlayer {
     display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: white solid 2px;
-        border-radius: 15px;
-        background-color: rgba(255, 255, 255, .7);
-        text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, .7);
+    text-align: center;
 }
 
 .close {
@@ -178,24 +179,24 @@ button:hover{
 }
 
 .next {
-    font-weight: 900; 
-    height: 50px; 
-    width: 50px; 
-    padding: 0px; 
-    display: flex; 
-    justify-content: center; 
+    font-weight: 900;
+    height: 50px;
+    width: 50px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.input2Btn{
+.input2Btn {
     display: none;
 }
 
-.input2{
+.input2 {
     display: none;
 }
 
-.close:hover{
+.close:hover {
     background-color: black;
     color: white;
 }
@@ -204,7 +205,7 @@ button:hover{
     width: 50%;
 }
 
-input{
+input {
     padding: 10px;
     border-radius: 10px;
     border: none;
@@ -247,34 +248,41 @@ input{
 
 .box:nth-child(1) {
     border-right: 4px solid white;
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(2) {
     border-right: 4px solid white;
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(3) {
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(4) {
     border-right: 4px solid white;
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(5) {
     border-right: 4px solid white;
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(6) {
-    border-bottom:  4px solid white;
+    border-bottom: 4px solid white;
 }
+
 .box:nth-child(7) {
     border-right: 4px solid white;
 }
+
 .box:nth-child(8) {
     border-right: 4px solid white;
 }
-.box:nth-child(9) {
-}
+
+.box:nth-child(9) {}
 
 
 @media screen and (max-width: 768px) {
@@ -293,7 +301,7 @@ input{
         width: 75%;
         font-size: 20px;
         margin-top: 70px;
-        margin-left: 10px;  
+        margin-left: 10px;
     }
 
     .whichPlayer {
@@ -321,6 +329,61 @@ input{
     .back img {
         width: 1rem;
     }
+
+    .horistroke {
+        position: absolute;
+        transform: rotate(45deg);
+    }
+
+    .hori1 {
+        margin-top: -70px;
+        display: none;
+    }
+
+    .hori2 {
+        margin-top: 20px;
+        display: none;
+    }
+
+    .hori3 {
+        margin-top: 120px;
+        display: none;
+    }
+
+    .vertistroke {
+        position: absolute;
+        transform: rotate(-45deg);
+        margin-top: 20px;
+    }
+
+    .verti1 {
+        margin-left: -90px;
+        display: none;
+    }
+
+    .verti2 {
+        display: none;
+    }
+
+    .verti3 {
+        margin-left: 90px;
+        display: none;
+    }
+
+    .diagonstroke {
+        position: absolute;
+        margin-top: -10px;
+        margin-left: -40px;
+        display: none;
+    }
+
+    .slashstroke {
+        position: absolute;
+        margin-top: -10px;
+        transform: rotate(90deg);
+        margin-left: -40px;
+        display: none;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -341,7 +404,7 @@ input{
         margin-bottom: 60px;
     }
 
-    .whichPlayer{
+    .whichPlayer {
         position: absolute;
         top: 270px;
         left: 50px;
@@ -356,6 +419,69 @@ input{
     .back {
         top: 20px;
         left: 50px;
+    }
+    
+    .horistroke {
+        position: absolute;
+        transform: rotate(45deg);
+    }
+
+    .hori1 {
+        margin-top: -75px;
+        display: none;
+        width: 380px;
+    }
+
+    .hori2 {
+        margin-top: 40px;
+        display: none;
+        width: 380px;
+    }
+
+    .hori3 {
+        margin-top: 160px;
+        display: none;
+        width: 380px;
+    }
+
+    .vertistroke {
+        position: absolute;
+        transform: rotate(-45deg);
+        margin-top: 20px;
+    }
+
+    .verti1 {
+        margin-left: -120px;
+        display: none;
+        width: 380px;
+    }
+
+    .verti2 {
+        display: none;
+        width: 380px;
+    }
+
+    .verti3 {
+        margin-left: 120px;
+        display: none;
+        width: 380px;
+    }
+
+    .diagonstroke {
+        position: absolute;
+        margin-top: -10px;
+        margin-left: -40px;
+        display: none;
+        width: 450px;
+    }
+
+    .slashstroke {
+        position: absolute;
+        margin-top: -10px;
+        transform: rotate(90deg);
+        margin-left: -40px;
+        display: none;
+        width: 450px;
     }
 }
 
@@ -379,7 +505,8 @@ input{
     justify-content: center;
 }
 
-.gameBtn1, .gameBtn2 {
+.gameBtn1,
+.gameBtn2 {
     display: flex;
     margin-top: 50px;
 }
@@ -388,6 +515,7 @@ input{
     font-size: 45px;
 }
 
-#twoplayers, #easy {
+#twoplayers,
+#easy {
     margin-right: 10px;
 }
