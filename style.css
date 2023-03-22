@@ -282,8 +282,6 @@ input {
     border-right: 4px solid white;
 }
 
-.box:nth-child(9) {}
-
 
 @media screen and (max-width: 768px) {
     .box {
