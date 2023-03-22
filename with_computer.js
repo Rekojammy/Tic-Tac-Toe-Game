@@ -523,21 +523,15 @@ hard.addEventListener('click', (e) => {
                         if (pair.innerText === 'X') {
                             O_outcome--;
                             X_outcome++;
-                            console.log(X_outcome);
-                            console.log(pair);
                         } else if (pair.innerText === 'O') {
                             O_outcome++;
                             X_outcome--;
-                            console.log(O_outcome);
-                            console.log(pair);
                         }
                     }
                     if (O_outcome === 2) {
                         if (mod.length !== new Set(mod.textContent).size) {
-                            console.log('Two Os found!');
                             hasTwo = true;
                             hasTwoOs = true;
-                            console.log(mod);
                             for (let found of mod) {
                                 if (found.textContent === '' && found.textContent !== 'X') {
                                     found.textContent = 'O'
@@ -546,12 +540,9 @@ hard.addEventListener('click', (e) => {
                             break;
                         }
                     } else if (hasTwoOs === false) {
-                        console.log('has two Os is ' + hasTwoOs);
                         if (X_outcome === 2) {
                             if (mod.length !== new Set(mod.textContent).size) {
-                                console.log('Two Exes found!');
                                 hasTwo = true;
-                                console.log(mod);
                                 for (let found of mod) {
                                     if (found.textContent === '' && found.textContent !== 'O') {
                                         found.textContent = 'O'
@@ -566,7 +557,6 @@ hard.addEventListener('click', (e) => {
                     hasTwo = false;
                 }
                 if (!hasTwo) {
-                    console.log('No Two Exes found');
                     randbox--;
                     elem[random].innerHTML = oText;
                 }
@@ -625,7 +615,6 @@ hard.addEventListener('click', (e) => {
 
         start.addEventListener('click', () => {
             if (isGameEnded || !gameStarted) {
-                console.log('hey');
                 container.style.pointerEvents = 'all';
                 for (let i = 0; i < box.length; i++) {
                     const elements = box[i];
@@ -667,7 +656,6 @@ hard.addEventListener('click', (e) => {
                     children.style.display = 'none';
                 }
             }
-            console.log('playersTurn is ' + playersTurn);
         });
     }
 
